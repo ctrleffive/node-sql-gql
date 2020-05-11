@@ -16,15 +16,8 @@ export class ProductResolver {
   };
 
   @Mutation(() => Product)
-  async createProduct (@Arg('data') { name, description, color, stock, price, categoryId }: ProductInput): Promise<Product> {
-    return await Product.create({
-      name,
-      description,
-      color,
-      stock,
-      price,
-      categoryId
-    })
+  async createProduct (@Arg('data') data: ProductInput): Promise<Product> {
+    return await Product.create(data)
   };
 
   @Mutation(() => Boolean)
