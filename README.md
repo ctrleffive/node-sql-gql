@@ -1,3 +1,3 @@
-# NodeJS GraphQL Boilerplate
+# GraphQL Boilerplate
 
-NodeJS + TypeScript + MongoDB + GraphQL Boilerplate
+NodeJS + TypeScript + SQL + GraphQL Boilerplate
