@@ -20,11 +20,13 @@ const main = async (): Promise<void> => {
     validate: false
   })
 
+  // create database connection
   const sequelize = new Sequelize({
-    database: 'graphql_test',
     dialect: 'mysql',
-    username: 'root',
-    password: 'rootroot',
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
     models: [Category, Product]
   })
   await sequelize.sync()
@@ -33,8 +35,10 @@ const main = async (): Promise<void> => {
   const app = Express()
   server.applyMiddleware({ app: app as any })
 
-  app.listen({ port: 8000 }, () => {
-    const apiPath = `http://localhost:8000${server.graphqlPath}`
+  const port: string = process.env.PORT ?? '8000'
+
+  app.listen({ port }, () => {
+    const apiPath = `http://localhost:${port}${server.graphqlPath}`
     console.log(`🚀 Server ready and listening at => ${apiPath}`)
   })
 }
