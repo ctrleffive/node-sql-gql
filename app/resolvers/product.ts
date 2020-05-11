@@ -7,17 +7,17 @@ import { ProductInput } from './types/product'
 export class ProductResolver {
   @Query(_returns => Product, { nullable: false })
   async returnSingleProduct (@Arg('id') id: string): Promise<any> {
-    return Product.findOne({ where: { id } })
+    return await Product.findOne({ where: { id } })
   };
 
   @Query(() => [Product])
   async returnAllProduct (): Promise<Product[]> {
-    return Product.findAll()
+    return await Product.findAll()
   };
 
   @Mutation(() => Product)
   async createProduct (@Arg('data') { name, description, color, stock, price, categoryId }: ProductInput): Promise<Product> {
-    return Product.create({
+    return await Product.create({
       name,
       description,
       color,
