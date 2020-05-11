@@ -20,7 +20,6 @@ const main = async (): Promise<void> => {
     validate: false
   })
 
-  // eslint-disable-next-line no-new
   const sequelize = new Sequelize({
     database: 'graphql_test',
     dialect: 'mysql',

@@ -34,9 +34,8 @@ export class ProductResolver {
   }
 
   @FieldResolver(_type => (Category))
-  async category (@Root() product: Product): Promise<null> {
-    console.log(product)
-    // const category: any = await Category.findOne(product._doc.category_id)
-    return null
+  async category (@Root() product: Product): Promise<Category> {
+    const category: any = await Category.findOne({ where: { id: product.categoryId } })
+    return category
   }
 }

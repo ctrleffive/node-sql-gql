@@ -4,9 +4,9 @@ import { Table, Column, Model } from 'sequelize-typescript'
 @Table
 @ObjectType({ description: 'The Category model' })
 export default class Category extends Model<Category> {
-  @Column({ primaryKey: true })
+  @Column({ primaryKey: true, autoIncrement: true })
   @Field(() => ID)
-  id: string
+  id: number
 
   @Column
   @Field()

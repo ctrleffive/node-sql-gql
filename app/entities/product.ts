@@ -5,9 +5,9 @@ import Category from './category'
 @Table
 @ObjectType({ description: 'The Product model' })
 export default class Product extends Model<Product> {
-  @Column({ primaryKey: true })
+  @Column({ primaryKey: true, autoIncrement: true })
   @Field(() => ID)
-  id: String
+  id: number
 
   @Column
   @Field()
