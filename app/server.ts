@@ -5,17 +5,11 @@ import { Sequelize } from 'sequelize-typescript'
 import { buildSchema } from 'type-graphql'
 import { ApolloServer } from 'apollo-server-express'
 
-// resolvers
-import { ProductResolver } from './resolvers/Product'
-import { CategoryResolver } from './resolvers/Category'
-import Category from './entities/category'
-import Product from './entities/Product'
-
 dotenv.config()
 
 const main = async (): Promise<void> => {
   const schema = await buildSchema({
-    resolvers: [CategoryResolver, ProductResolver],
+    resolvers: [`${__dirname}/resolvers/*.js`],
     emitSchemaFile: true,
     validate: false
   })
@@ -27,7 +21,7 @@ const main = async (): Promise<void> => {
     database: process.env.DB_NAME,
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
-    models: [Category, Product]
+    models: [`${__dirname}/models`]
   })
   await sequelize.sync()
 

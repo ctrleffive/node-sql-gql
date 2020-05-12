@@ -1,7 +1,6 @@
 import { Resolver, Mutation, Arg, Query, FieldResolver, Root } from 'type-graphql'
-import Product from '../entities/Product'
-import Category from '../entities/category'
-import { ProductInput } from './types/product'
+import { Product, ProductInput } from '../models/Product'
+import Category from '../models/category'
 
 @Resolver(_of => Product)
 export class ProductResolver {
