@@ -16,10 +16,6 @@ export class Category extends Model<Category> {
   @Column
   @Field()
   description: String
-
-  @Column
-  @Field()
-  notes: String
 }
 
 @InputType()
@@ -30,6 +26,9 @@ export class CategoryInput implements Partial<Category> {
   @Field()
   @Length(1, 255)
   description: String
+
+  @Field()
+  notes: Boolean
 }
 
 export default Category

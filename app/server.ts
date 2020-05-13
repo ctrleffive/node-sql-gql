@@ -21,21 +21,21 @@ const main = async (): Promise<void> => {
     database: process.env.DB_NAME,
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
-    models: [`${__dirname}/models`]
+    models: [`${__dirname}/models`],
+    logging: false
   })
-  await sequelize.sync()
+  await sequelize.sync({ alter: true })
 
   const server = new ApolloServer({ schema })
   const app = Express()
   server.applyMiddleware({ app: app as any })
 
   const port: string = process.env.PORT ?? '8000'
-
   app.listen({ port }, () => {
     const apiPath = `http://localhost:${port}${server.graphqlPath}`
     console.log(`🚀 Server ready and listening at => ${apiPath}`)
   })
 }
 main().catch((error) => {
-  console.log(error, 'error')
+  console.error(error)
 })

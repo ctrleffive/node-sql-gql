@@ -14,8 +14,8 @@ export class CategoryResolver {
   };
 
   @Mutation(() => Category)
-  async createCategory (@Arg('data') { name, description }: CategoryInput): Promise<Category> {
-    return await Category.create({ name, description })
+  async createCategory (@Arg('data') data: CategoryInput): Promise<Category> {
+    return await Category.create(data)
   };
 
   @Mutation(() => Boolean)
