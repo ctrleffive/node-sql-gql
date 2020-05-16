@@ -27,8 +27,7 @@ const main = async (): Promise<void> => {
 
   const schema = await buildSchema({
     resolvers: [`${__dirname}/resolvers/*.{ts,js}`],
-    emitSchemaFile: true,
-    validate: false
+    emitSchemaFile: true
   })
 
   const server = new ApolloServer({ schema, context })

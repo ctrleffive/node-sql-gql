@@ -1,6 +1,7 @@
 import { Resolver, Mutation, Arg, Query, FieldResolver, Root } from 'type-graphql'
+
 import { Product, ProductInput } from '../models/Product'
-import Category from '../models/category'
+import { Category } from '../models/category'
 
 @Resolver(_of => Product)
 export class ProductResolver {
@@ -27,7 +28,7 @@ export class ProductResolver {
 
   @FieldResolver(_type => (Category))
   async category (@Root() product: Product): Promise<Category> {
-    const category: any = await Category.findOne({ where: { id: product.categoryId } })
+    const category: any = await Category.findOne({ where: { id: product.category } })
     return category
   }
 }

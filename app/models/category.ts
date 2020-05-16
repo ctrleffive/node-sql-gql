@@ -1,12 +1,13 @@
-import { ObjectType, Field, ID, InputType } from 'type-graphql'
-import { Table, Column, Model } from 'sequelize-typescript'
-import { Length } from 'class-validator'
+import { ObjectType, Field, Int, InputType } from 'type-graphql'
+import { Table, Column, Model, PrimaryKey, AutoIncrement } from 'sequelize-typescript'
 
 @Table
 @ObjectType({ description: 'The Category model' })
 export class Category extends Model<Category> {
-  @Column({ primaryKey: true, autoIncrement: true })
-  @Field(() => ID)
+  @AutoIncrement
+  @PrimaryKey
+  @Column
+  @Field(() => Int)
   id: number
 
   @Column
@@ -24,7 +25,6 @@ export class CategoryInput implements Partial<Category> {
   name: string
 
   @Field()
-  @Length(1, 255)
   description: String
 
   @Field()

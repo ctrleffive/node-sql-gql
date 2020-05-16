@@ -1,13 +1,15 @@
-import { ObjectType, Field, ID, Int, InputType } from 'type-graphql'
-import { Table, Column, Model, ForeignKey } from 'sequelize-typescript'
-import Category from './category'
-import { Length } from 'class-validator'
+import { ObjectType, Field, Int, InputType } from 'type-graphql'
+import { Table, Column, Model, ForeignKey, AutoIncrement, PrimaryKey } from 'sequelize-typescript'
+
+import { Category } from './category'
 
 @Table
 @ObjectType({ description: 'The Product model' })
 export class Product extends Model<Product> {
-  @Column({ primaryKey: true, autoIncrement: true })
-  @Field(() => ID)
+  @AutoIncrement
+  @PrimaryKey
+  @Column
+  @Field(() => Int)
   id: number
 
   @Column
@@ -31,11 +33,9 @@ export class Product extends Model<Product> {
   price: number
 
   @Column
-  @Field(_type => String)
+  @Field(_type => Category)
   @ForeignKey(() => Category)
-  categoryId: number
-
-  _doc: any
+  category: number
 }
 
 @InputType()
@@ -44,7 +44,6 @@ export class ProductInput implements Partial<Product> {
   name: String
 
   @Field()
-  @Length(1, 255)
   description: String
 
   @Field()
@@ -56,8 +55,8 @@ export class ProductInput implements Partial<Product> {
   @Field()
   price: number
 
-  @Field(() => String)
-  categoryId: number
+  @Field(() => Int)
+  category: number
 }
 
 export default Product

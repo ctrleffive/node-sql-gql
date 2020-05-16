@@ -1,7 +1,8 @@
 import { Resolver, Mutation, Arg, Query } from 'type-graphql'
+
 import { Category, CategoryInput } from '../models/category'
 
-@Resolver()
+@Resolver(_of => Category)
 export class CategoryResolver {
   @Query(_returns => Category, { nullable: false })
   async returnSingleCategory (@Arg('id') id: string): Promise<any> {

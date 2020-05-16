@@ -1,6 +1,5 @@
 .env
 node_modules
 yarn-error.log
-schema.gql
 dist
 .DS_Store
