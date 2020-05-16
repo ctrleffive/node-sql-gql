@@ -1,23 +1,23 @@
 import { Resolver, Mutation, Arg, Query, FieldResolver, Root } from 'type-graphql'
 
-import { Product, ProductInput } from '../models/Product'
+import { Product, ProductInput } from '../models/product'
 import { Category } from '../models/category'
 
 @Resolver(_of => Product)
 export class ProductResolver {
-  @Query(_returns => Product, { nullable: false })
+  @Query(_returns => Product)
   async returnSingleProduct (@Arg('id') id: string): Promise<any> {
-    return await Product.findOne({ where: { id } })
+    return Product.findOne({ where: { id } })
   };
 
   @Query(() => [Product])
   async returnAllProduct (): Promise<Product[]> {
-    return await Product.findAll()
+    return Product.findAll()
   };
 
   @Mutation(() => Product)
   async createProduct (@Arg('data') data: ProductInput): Promise<Product> {
-    return await Product.create(data)
+    return Product.create(data)
   };
 
   @Mutation(() => Boolean)

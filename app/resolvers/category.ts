@@ -6,17 +6,17 @@ import { Category, CategoryInput } from '../models/category'
 export class CategoryResolver {
   @Query(_returns => Category, { nullable: false })
   async returnSingleCategory (@Arg('id') id: string): Promise<any> {
-    return await Category.findOne({ where: { id } })
+    return Category.findOne({ where: { id } })
   };
 
   @Query(() => [Category])
   async returnAllCategory (): Promise<Category[]> {
-    return await Category.findAll()
+    return Category.findAll()
   };
 
   @Mutation(() => Category)
   async createCategory (@Arg('data') data: CategoryInput): Promise<Category> {
-    return await Category.create(data)
+    return Category.create(data)
   };
 
   @Mutation(() => Boolean)
