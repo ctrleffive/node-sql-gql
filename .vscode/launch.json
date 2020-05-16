@@ -6,20 +6,11 @@
   "configurations": [
     {
       "type": "node",
-      "request": "launch",
       "name": "Debug",
-      "program": "${workspaceFolder}/app/server.ts",
-      "preLaunchTask": {
-        "type": "typescript",
-        "tsconfig": "tsconfig.json",
-        "option": "watch",
-        "problemMatcher": ["$tsc-watch"],
-        "group": "build"
-      },
-      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
-      "runtimeExecutable": "${workspaceFolder}/node_modules/nodemon/bin/nodemon.js",
       "restart": true,
-      "trace": true
+      "request": "attach",
+      "protocol": "inspector",
+      "preLaunchTask": "nodemon"
     }
   ]
 }

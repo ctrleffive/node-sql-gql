@@ -3,20 +3,22 @@
   "version": "1.0.0",
   "description": "NodeJS + TypeScript + SQL + GraphQL Boilerplate",
   "repository": "git@github.com:ctrleffive/node-sql-gql.git",
-  "main": "app/server.js",
+  "main": "app/server.ts",
   "author": "Chandu J S <app.coder@outlook.in>",
   "license": "MIT",
   "scripts": {
-    "start": "yarn serve",
+    "start": "nodemon",
     "build": "tsc",
-    "serve": "node dist/server.js",
-    "watch-node": "nodemon dist/server.js",
-    "watch-ts": "tsc -w",
-    "lint": "eslint --ext .ts . --fix",
+    "lint": "eslint 'app/**/*.ts'",
+    "lint-fix": "eslint --fix 'app/**/*.ts'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  },
   "devDependencies": {
-    "@types/bluebird": "^3.5.30",
     "@types/express": "types/express",
     "@types/graphql": "^14.5.0",
     "@types/node": "^13.13.5",
@@ -28,6 +30,7 @@
     "eslint-plugin-node": "11",
     "eslint-plugin-promise": "4",
     "eslint-plugin-standard": "4",
+    "husky": "^4.2.5",
     "nodemon": "^2.0.3",
     "ts-node": "^8.10.1",
     "typescript": "^3.8.3"
